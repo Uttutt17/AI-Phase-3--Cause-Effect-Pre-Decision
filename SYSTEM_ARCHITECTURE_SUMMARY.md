@@ -9,7 +9,7 @@
 Product
 ├── Basic Info (id, name, category)
 ├── Attributes (price, weight, battery_life, material, etc.)
-└── Visual Assets (images, spec callouts)
+└── Visual Assets (images, spec callouts) 
 ```
 
 **Key Points:**
