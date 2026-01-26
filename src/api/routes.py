@@ -172,7 +172,7 @@ async def create_product(
             {
                 "asset_type": asset.asset_type,
                 "asset_url": asset.asset_url,
-                "metadata": asset.metadata
+                "metadata": asset.asset_metadata
             }
             for asset in created_product.visual_assets
         ]
@@ -206,7 +206,7 @@ async def get_all_products(db: Session = Depends(get_db)):
                 {
                     "asset_type": asset.asset_type,
                     "asset_url": asset.asset_url,
-                    "metadata": asset.metadata
+                    "metadata": asset.asset_metadata
                 }
                 for asset in product.visual_assets
             ]
@@ -243,7 +243,7 @@ async def get_product(product_id: str, db: Session = Depends(get_db)):
             {
                 "asset_type": asset.asset_type,
                 "asset_url": asset.asset_url,
-                "metadata": asset.metadata
+                "metadata": asset.asset_metadata
             }
             for asset in product.visual_assets
         ]

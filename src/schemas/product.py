@@ -20,10 +20,11 @@ class VisualAssetResponse(BaseModel):
     """Visual asset response schema."""
     asset_type: str
     asset_url: str
-    metadata: Optional[Dict[str, Any]] = None
+    metadata: Optional[Dict[str, Any]] = Field(None, alias="asset_metadata")  # Maps to asset_metadata in model
     
     class Config:
         from_attributes = True
+        populate_by_name = True
 
 
 class ProductResponse(BaseModel):

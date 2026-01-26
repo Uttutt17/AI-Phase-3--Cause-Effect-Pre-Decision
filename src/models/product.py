@@ -48,7 +48,7 @@ class VisualAsset(Base):
     product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
     asset_type = Column(String, nullable=False)  # 'main_image', 'detail_image', 'spec_callout'
     asset_url = Column(String, nullable=False)
-    metadata = Column(JSON, nullable=True)  # Additional metadata
+    asset_metadata = Column(JSON, nullable=True)  # Additional metadata (renamed from 'metadata' to avoid SQLAlchemy conflict)
     
     # Relationships
     product = relationship("Product", back_populates="visual_assets")

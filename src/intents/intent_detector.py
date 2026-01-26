@@ -1,20 +1,36 @@
 """Intent detection engine using NLP."""
-import spacy
 from typing import List, Dict, Any, Optional
 from src.schemas.intent import IntentType, IntentResponse
 import re
+import importlib
+
+# Optional spaCy import - pattern matching works without it
+# Catch all exceptions since spaCy may have compatibility issues with Python 3.14+
+SPACY_AVAILABLE = False
+_nlp_module = None
+try:
+    # Use importlib to safely attempt import
+    _nlp_module = importlib.import_module('spacy')
+    SPACY_AVAILABLE = True
+except (ImportError, ModuleNotFoundError, Exception) as e:
+    # spaCy not available or incompatible (e.g., Python 3.14 compatibility issues)
+    # Use pattern matching fallback - this works fine without spaCy
+    SPACY_AVAILABLE = False
+    _nlp_module = None
 
 
 class IntentDetector:
     """Detects user intent from natural language queries."""
     
     def __init__(self):
-        """Initialize the intent detector with spaCy model."""
-        try:
-            self.nlp = spacy.load("en_core_web_sm")
-        except OSError:
-            # Fallback to basic pattern matching if spaCy model not available
-            self.nlp = None
+        """Initialize the intent detector with spaCy model (optional)."""
+        self.nlp = None
+        if SPACY_AVAILABLE and _nlp_module is not None:
+            try:
+                self.nlp = _nlp_module.load("en_core_web_sm")
+            except (OSError, ImportError, Exception):
+                # Fallback to basic pattern matching if spaCy model not available
+                self.nlp = None
     
     def detect_intent(self, user_query: str, product_ids: Optional[List[str]] = None) -> IntentResponse:
         """

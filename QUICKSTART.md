@@ -22,10 +22,14 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. **Download spaCy language model:**
+   **Note:** PostgreSQL support (`psycopg2-binary`) is optional and commented out by default. The project uses SQLite by default, which doesn't require any additional setup.
+
+4. **Optional:** Install spaCy for enhanced NLP (not required):
 ```bash
+pip install spacy
 python -m spacy download en_core_web_sm
 ```
+   Note: spaCy is optional - the intent detector works with pattern matching by default.
 
 5. **Set up environment variables:**
    - Copy `.env.example` to `.env` (or create `.env` manually)

@@ -1,0 +1,4 @@
+# PostgreSQL support - install this if you want to use PostgreSQL instead of SQLite
+# Note: On Windows, you may need to install PostgreSQL first or use a pre-built wheel
+psycopg2-binary==2.9.9
+

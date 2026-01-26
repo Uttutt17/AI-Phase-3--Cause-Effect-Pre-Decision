@@ -26,10 +26,16 @@ The system follows a strict separation of concerns:
 pip install -r requirements.txt
 ```
 
-2. Download spaCy language model:
+   **Note:** `psycopg2-binary` (PostgreSQL support) is commented out by default since SQLite is used for development. If you want to use PostgreSQL, you can:
+   - Install PostgreSQL on your system first, then uncomment the line in `requirements.txt`
+   - Or use: `pip install -r requirements-postgresql.txt` (may require PostgreSQL installed)
+
+2. **Optional:** Install spaCy for enhanced NLP (not required - intent detection works with pattern matching):
 ```bash
+pip install spacy
 python -m spacy download en_core_web_sm
 ```
+   Note: spaCy is optional. The intent detector uses pattern matching by default and works without spaCy.
 
 3. Create `.env` file (copy from `.env.example` or create manually):
 ```bash
